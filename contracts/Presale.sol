@@ -91,4 +91,10 @@ contract Presale is Context, Ownable {
     require(sold, "Error: Failed to send XOXCASH");
     emit TokenSold(amount / _rate, msg.sender)
   }
+
+  function setWithdrawalWallet(address withdrawalWallet_) 
+    external onlyOwner() returns (bool) {
+      _withdrawalWallet = withdrawalWallet_;
+      return true;
+  }
 }
