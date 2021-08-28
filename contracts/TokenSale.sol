@@ -2,7 +2,7 @@ pragma solidity >=0.4.2 <0.9.0;
 
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract TokenSale is Context, Ownable {
   address payable _withdrawalWallet;
@@ -33,12 +33,12 @@ contract TokenSale is Context, Ownable {
     address token_
   ) public Ownable() {
     _withdrawalWallet = payable(withdrawalWallet_);
-    _rate = rate_ * 1 ether;
+    _rate = rate_;
     _tradeToken = IERC20(token_);
   }
 
   function _setRate(uint256 rate_) private returns (bool) {
-    require(rate > 0, "Error: Rate must be greater than 0");
+    require(rate_ > 0, "Error: Rate must be greater than 0");
     _rate = rate_ * 1 ether;
     emit RateChanged(rate_);
     return true;
@@ -85,7 +85,7 @@ contract TokenSale is Context, Ownable {
     return true;
   }
 
-  function getRemainingDays() public returns (uint256) {
+  function getRemainingDays() public view returns (uint256) {
     uint256 currentTimestamp = block.timestamp;
 
     if (_endTime > currentTimestamp) return _endTime - currentTimestamp;
@@ -93,7 +93,7 @@ contract TokenSale is Context, Ownable {
     return 0;
   }
 
-  function buy(uint256 amount) external returns (bool) {
+  function buy(uint256 amount) external returns (bool bought) {
     require(
       block.timestamp >= _startTime,
       "Error: Token sale has not begun yet"
@@ -115,7 +115,11 @@ contract TokenSale is Context, Ownable {
     onlyOwner
     returns (bool)
   {
-    _withdrawalWallet = withdrawalWallet_;
+    _withdrawalWallet = payable(withdrawalWallet_);
     return true;
+  }
+
+  function getRate() external view returns (uint256) {
+    return _rate;
   }
 }

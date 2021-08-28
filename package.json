@@ -8,7 +8,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write contracts/*.sol"
+    "format": "prettier --write **/**/*.{js,json,sol}",
+    "flatten": "truffle-flattener contracts/TokenSale.sol > TokenSaleFlat.sol",
+    "deploy:bscmainnet": "truffle migrate --network bscmainnet",
+    "deploy:bsctestnet": "truffle migrate --network bsctestnet"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,7 @@
   "homepage": "https://github.com/xox-cash-organization/ICO#readme",
   "dependencies": {
     "@openzeppelin/contracts": "^4.3.1",
-    "@truffle/hdwallet-provider": "^1.5.0"
+    "@truffle/hdwallet-provider": "^1.5.0",
+    "dotenv": "^10.0.0"
   }
 }
