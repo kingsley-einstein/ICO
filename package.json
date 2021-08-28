@@ -1,0 +1,26 @@
+{
+  "name": "xoxcashico",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/xox-cash-organization/ICO.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xox-cash-organization/ICO/issues"
+  },
+  "homepage": "https://github.com/xox-cash-organization/ICO#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.3.1",
+    "@truffle/hdwallet-provider": "^1.5.0"
+  }
+}
