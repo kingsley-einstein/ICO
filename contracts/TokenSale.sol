@@ -26,6 +26,7 @@ contract TokenSale is Context, Ownable {
   event TokenSaleExtended(uint256 newEndTime);
   event TokenSaleFinalized(uint256 finalTime);
   event TokenSold(uint256 amount, address buyer);
+  event BNBWithdrawn(address recipient, uint256 amount);
 
   constructor(
     address withdrawalWallet_,
@@ -39,7 +40,7 @@ contract TokenSale is Context, Ownable {
 
   function _setRate(uint256 rate_) private returns (bool) {
     require(rate_ > 0, "Error: Rate must be greater than 0");
-    _rate = rate_ * 1 ether;
+    _rate = rate_;
     emit RateChanged(_rate);
     return true;
   }
@@ -80,6 +81,13 @@ contract TokenSale is Context, Ownable {
 
   function finalizeTokenSale() external onlyWithdrawalAddress returns (bool) {
     require(!_finalized, "Error: Token sale cannot be finalized twice");
+    require(
+      _tradeToken.transfer(
+        _withdrawalWallet,
+        _tradeToken.balanceOf(address(this))
+      ),
+      "Error: Could not transfer remaining tokens"
+    );
     _finalized = true;
     emit TokenSaleFinalized(block.timestamp);
     return true;
@@ -93,20 +101,22 @@ contract TokenSale is Context, Ownable {
     return 0;
   }
 
-  function buy(uint256 amount) external returns (bool bought) {
+  function buyXOX() public payable {
     require(
       block.timestamp >= _startTime,
       "Error: Token sale has not begun yet"
     );
     require(block.timestamp < _endTime, "Error: Token sale has ended");
-    _withdrawalWallet.transfer(amount);
-    bool sold = _tradeToken.transferFrom(
-      _withdrawalWallet,
-      msg.sender,
-      amount / _rate
+
+    uint256 _valueAsWei = msg.value * 10**18;
+
+    require(
+      _tradeToken.balanceOf(address(this)) >= (_valueAsWei / _rate),
+      "Error: Not enough tokens to sell"
     );
+    bool sold = _tradeToken.transfer(msg.sender, _valueAsWei / _rate);
     require(sold, "Error: Failed to send XOXCASH");
-    emit TokenSold(amount / _rate, msg.sender);
+    emit TokenSold(_valueAsWei / _rate, msg.sender);
   }
 
   function setWithdrawalWallet(address withdrawalWallet_)
@@ -128,5 +138,15 @@ contract TokenSale is Context, Ownable {
 
   function getEndTime() external view returns (uint256) {
     return _endTime;
+  }
+
+  function withdrawBNB() public onlyWithdrawalAddress returns (bool) {
+    uint256 bal = address(this).balance;
+    _withdrawalWallet.transfer(bal);
+    emit BNBWithdrawn(msg.sender, bal);
+  }
+
+  receive() external payable {
+    buyXOX();
   }
 }

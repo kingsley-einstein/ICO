@@ -1397,9 +1397,7 @@
   "ast": {
     "absolutePath": "project:/contracts/Migrations.sol",
     "exportedSymbols": {
-      "Migrations": [
-        236
-      ]
+      "Migrations": [236]
     },
     "id": 237,
     "license": "MIT",
@@ -1407,15 +1405,7 @@
     "nodes": [
       {
         "id": 205,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".22",
-          "<",
-          "0.9",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".22", "<", "0.9", ".0"],
         "nodeType": "PragmaDirective",
         "src": "32:32:3"
       },
@@ -1426,9 +1416,7 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 236,
-        "linearizedBaseContracts": [
-          236
-        ],
+        "linearizedBaseContracts": [236],
         "name": "Migrations",
         "nameLocation": "75:10:3",
         "nodeType": "ContractDefinition",
@@ -1612,10 +1600,7 @@
                       "id": 213,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "199:7:3",
                       "typeDescriptions": {
@@ -1793,9 +1778,7 @@
   "legacyAST": {
     "absolutePath": "project:/contracts/Migrations.sol",
     "exportedSymbols": {
-      "Migrations": [
-        236
-      ]
+      "Migrations": [236]
     },
     "id": 237,
     "license": "MIT",
@@ -1803,15 +1786,7 @@
     "nodes": [
       {
         "id": 205,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".22",
-          "<",
-          "0.9",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".22", "<", "0.9", ".0"],
         "nodeType": "PragmaDirective",
         "src": "32:32:3"
       },
@@ -1822,9 +1797,7 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 236,
-        "linearizedBaseContracts": [
-          236
-        ],
+        "linearizedBaseContracts": [236],
         "name": "Migrations",
         "nameLocation": "75:10:3",
         "nodeType": "ContractDefinition",
@@ -2008,10 +1981,7 @@
                       "id": 213,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "199:7:3",
                       "typeDescriptions": {
@@ -2194,12 +2164,12 @@
     "97": {
       "events": {},
       "links": {},
-      "address": "0xe88DdB8699E78FbCD6215eBCA61127A7C1627316",
-      "transactionHash": "0x73a73c58ef98195697478babb0cafaaa0eb9c24f1ab60f406ab8e5c7c425fa94"
+      "address": "0x276bEdD137969Eb1D375AD9237052D30C24A06CB",
+      "transactionHash": "0xcd23817e947e58e74e3c6dbcb9687f1b645cf6737dd60c90f0199904e6ec6cb1"
     }
   },
   "schemaVersion": "3.4.1",
-  "updatedAt": "2021-08-28T18:51:06.902Z",
+  "updatedAt": "2021-08-28T20:00:37.321Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

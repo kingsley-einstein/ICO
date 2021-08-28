@@ -67,12 +67,8 @@
   "ast": {
     "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
     "exportedSymbols": {
-      "Context": [
-        203
-      ],
-      "Ownable": [
-        103
-      ]
+      "Context": [203],
+      "Ownable": [103]
     },
     "id": 104,
     "license": "MIT",
@@ -80,12 +76,7 @@
     "nodes": [
       {
         "id": 1,
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ],
+        "literals": ["solidity", "^", "0.8", ".0"],
         "nodeType": "PragmaDirective",
         "src": "33:23:0"
       },
@@ -127,10 +118,7 @@
         },
         "fullyImplemented": true,
         "id": 103,
-        "linearizedBaseContracts": [
-          103,
-          203
-        ],
+        "linearizedBaseContracts": [103, 203],
         "name": "Ownable",
         "nameLocation": "603:7:0",
         "nodeType": "ContractDefinition",
@@ -551,10 +539,7 @@
                       "id": 35,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "1177:7:0",
                       "typeDescriptions": {
@@ -893,10 +878,7 @@
                       "id": 68,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "1926:7:0",
                       "typeDescriptions": {
@@ -1060,9 +1042,7 @@
               "src": "2086:124:0",
               "statements": [
                 {
-                  "assignments": [
-                    89
-                  ],
+                  "assignments": [89],
                   "declarations": [
                     {
                       "constant": false,
@@ -1288,12 +1268,8 @@
   "legacyAST": {
     "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
     "exportedSymbols": {
-      "Context": [
-        203
-      ],
-      "Ownable": [
-        103
-      ]
+      "Context": [203],
+      "Ownable": [103]
     },
     "id": 104,
     "license": "MIT",
@@ -1301,12 +1277,7 @@
     "nodes": [
       {
         "id": 1,
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ],
+        "literals": ["solidity", "^", "0.8", ".0"],
         "nodeType": "PragmaDirective",
         "src": "33:23:0"
       },
@@ -1348,10 +1319,7 @@
         },
         "fullyImplemented": true,
         "id": 103,
-        "linearizedBaseContracts": [
-          103,
-          203
-        ],
+        "linearizedBaseContracts": [103, 203],
         "name": "Ownable",
         "nameLocation": "603:7:0",
         "nodeType": "ContractDefinition",
@@ -1772,10 +1740,7 @@
                       "id": 35,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "1177:7:0",
                       "typeDescriptions": {
@@ -2114,10 +2079,7 @@
                       "id": 68,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "1926:7:0",
                       "typeDescriptions": {
@@ -2281,9 +2243,7 @@
               "src": "2086:124:0",
               "statements": [
                 {
-                  "assignments": [
-                    89
-                  ],
+                  "assignments": [89],
                   "declarations": [
                     {
                       "constant": false,
@@ -2512,7 +2472,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.1",
-  "updatedAt": "2021-08-28T18:50:03.515Z",
+  "updatedAt": "2021-08-28T19:59:22.471Z",
   "devdoc": {
     "details": "Contract module which provides a basic access control mechanism, where there is an account (an owner) that can be granted exclusive access to specific functions. By default, the owner account will be the one that deploys the contract. This can later be changed with {transferOwnership}. This module is used through inheritance. It will make available the modifier `onlyOwner`, which can be applied to your functions to restrict their use to the owner.",
     "kind": "dev",
