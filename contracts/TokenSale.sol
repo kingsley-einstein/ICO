@@ -40,7 +40,7 @@ contract TokenSale is Context, Ownable {
   function _setRate(uint256 rate_) private returns (bool) {
     require(rate_ > 0, "Error: Rate must be greater than 0");
     _rate = rate_ * 1 ether;
-    emit RateChanged(rate_);
+    emit RateChanged(_rate);
     return true;
   }
 
@@ -99,8 +99,7 @@ contract TokenSale is Context, Ownable {
       "Error: Token sale has not begun yet"
     );
     require(block.timestamp < _endTime, "Error: Token sale has ended");
-    (bool success, ) = _withdrawalWallet.call{value: amount}("");
-    require(success, "Error: Failed to send BNB to purchase XOXCASH");
+    _withdrawalWallet.transfer(amount);
     bool sold = _tradeToken.transferFrom(
       _withdrawalWallet,
       msg.sender,
@@ -121,5 +120,13 @@ contract TokenSale is Context, Ownable {
 
   function getRate() external view returns (uint256) {
     return _rate;
+  }
+
+  function getStartTime() external view returns (uint256) {
+    return _startTime;
+  }
+
+  function getEndTime() external view returns (uint256) {
+    return _endTime;
   }
 }
