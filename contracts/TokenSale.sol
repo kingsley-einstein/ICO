@@ -96,7 +96,7 @@ contract TokenSale is Context, Ownable {
   function buy(uint256 amount) external returns (bool) {
     require(
       block.timestamp >= _startTime,
-      "Error: Token sale hasn't begun yet"
+      "Error: Token sale has not begun yet"
     );
     require(block.timestamp < _endTime, "Error: Token sale has ended");
     (bool success, ) = _withdrawalWallet.call{value: amount}("");
