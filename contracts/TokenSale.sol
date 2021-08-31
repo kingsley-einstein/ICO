@@ -109,14 +109,17 @@ contract TokenSale is Context, Ownable {
     require(block.timestamp < _endTime, "Error: Token sale has ended");
 
     uint256 _valueAsWei = msg.value * 10**18;
+    uint256 _valueDividedByRate = _valueAsWei / _rate;
+    uint256 _tenPercent = 0.1 * _valueDividedByRate;
+    uint256 _sending = _valueDividedByRate + _tenPercent;
 
     require(
-      _tradeToken.balanceOf(address(this)) >= (_valueAsWei / _rate),
+      _tradeToken.balanceOf(address(this)) >= _sending,
       "Error: Not enough tokens to sell"
     );
-    bool sold = _tradeToken.transfer(msg.sender, _valueAsWei / _rate);
+    bool sold = _tradeToken.transfer(msg.sender, _sending);
     require(sold, "Error: Failed to send XOXCASH");
-    emit TokenSold(_valueAsWei / _rate, msg.sender);
+    emit TokenSold(_sending, msg.sender);
   }
 
   function setWithdrawalWallet(address withdrawalWallet_)
