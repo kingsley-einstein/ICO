@@ -110,7 +110,7 @@ contract TokenSale is Context, Ownable {
 
     uint256 _valueAsWei = msg.value * 10**18;
     uint256 _valueDividedByRate = _valueAsWei / _rate;
-    uint256 _tenPercent = 0.1 * _valueDividedByRate;
+    uint256 _tenPercent = (_valueDividedByRate * 10) / 100;
     uint256 _sending = _valueDividedByRate + _tenPercent;
 
     require(
