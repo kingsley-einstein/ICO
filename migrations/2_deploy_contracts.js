@@ -8,7 +8,7 @@ module.exports = async function (deployer) {
   await deployer.deploy(
     TokenSale,
     WITHDRAWAL_WALLET,
-    0.001 * 10 ** 18,
+    0.0025 * 10 ** 18,
     TOKEN_ADDRESS
   );
 };

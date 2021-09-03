@@ -53,16 +53,20 @@ contract TokenSale is Context, Ownable {
     return _setRate(rate_);
   }
 
-  function beginTokenSale(uint256 daysFromStart)
+  function _beginTokenSale(uint256 _daysFromStart) private returns (bool) {
+    require(!_initialized, "Error: Token sale already begun");
+    _startTime = block.timestamp;
+    _endTime = block.timestamp + (_daysFromStart * 1 days);
+    _initialized = true;
+    emit TokenSaleStarted(_startTime, _endTime);
+  }
+
+  function beginTokenSale(uint256 _daysFromStart)
     external
     onlyWithdrawalAddress
     returns (bool)
   {
-    require(!_initialized, "Error: Token sale already begun");
-    _startTime = block.timestamp;
-    _endTime = block.timestamp + (daysFromStart * 1 days);
-    _initialized = true;
-    emit TokenSaleStarted(_startTime, _endTime);
+    return _beginTokenSale(_daysFromStart);
   }
 
   function extendTokenSale(uint256 extension)
@@ -94,6 +98,8 @@ contract TokenSale is Context, Ownable {
   }
 
   function getRemainingDays() public view returns (uint256) {
+    if (_finalized) return 0;
+
     uint256 currentTimestamp = block.timestamp;
 
     if (_endTime > currentTimestamp) return _endTime - currentTimestamp;
