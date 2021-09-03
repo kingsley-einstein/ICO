@@ -59,6 +59,7 @@ contract TokenSale is Context, Ownable {
     _endTime = block.timestamp + (_daysFromStart * 1 days);
     _initialized = true;
     emit TokenSaleStarted(_startTime, _endTime);
+    return true;
   }
 
   function beginTokenSale(uint256 _daysFromStart)
@@ -113,6 +114,7 @@ contract TokenSale is Context, Ownable {
       "Error: Token sale has not begun yet"
     );
     require(block.timestamp < _endTime, "Error: Token sale has ended");
+    require(!_finalized, "Error: Token sale has been finalized");
 
     uint256 _valueAsWei = msg.value * 10**18;
     uint256 _valueDividedByRate = _valueAsWei / _rate;
