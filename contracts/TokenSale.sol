@@ -53,16 +53,21 @@ contract TokenSale is Context, Ownable {
     return _setRate(rate_);
   }
 
-  function beginTokenSale(uint256 daysFromStart)
+  function _beginTokenSale(uint256 _daysFromStart) private returns (bool) {
+    require(!_initialized, "Error: Token sale already begun");
+    _startTime = block.timestamp;
+    _endTime = block.timestamp + (_daysFromStart * 1 days);
+    _initialized = true;
+    emit TokenSaleStarted(_startTime, _endTime);
+    return true;
+  }
+
+  function beginTokenSale(uint256 _daysFromStart)
     external
     onlyWithdrawalAddress
     returns (bool)
   {
-    require(!_initialized, "Error: Token sale already begun");
-    _startTime = block.timestamp;
-    _endTime = block.timestamp + (daysFromStart * 1 days);
-    _initialized = true;
-    emit TokenSaleStarted(_startTime, _endTime);
+    return _beginTokenSale(_daysFromStart);
   }
 
   function extendTokenSale(uint256 extension)
@@ -94,6 +99,8 @@ contract TokenSale is Context, Ownable {
   }
 
   function getRemainingDays() public view returns (uint256) {
+    if (_finalized) return 0;
+
     uint256 currentTimestamp = block.timestamp;
 
     if (_endTime > currentTimestamp) return _endTime - currentTimestamp;
@@ -107,16 +114,20 @@ contract TokenSale is Context, Ownable {
       "Error: Token sale has not begun yet"
     );
     require(block.timestamp < _endTime, "Error: Token sale has ended");
+    require(!_finalized, "Error: Token sale has been finalized");
 
     uint256 _valueAsWei = msg.value * 10**18;
+    uint256 _valueDividedByRate = _valueAsWei / _rate;
+    uint256 _tenPercent = (_valueDividedByRate * 10) / 100;
+    uint256 _sending = _valueDividedByRate + _tenPercent;
 
     require(
-      _tradeToken.balanceOf(address(this)) >= (_valueAsWei / _rate),
+      _tradeToken.balanceOf(address(this)) >= _sending,
       "Error: Not enough tokens to sell"
     );
-    bool sold = _tradeToken.transfer(msg.sender, _valueAsWei / _rate);
+    bool sold = _tradeToken.transfer(msg.sender, _sending);
     require(sold, "Error: Failed to send XOXCASH");
-    emit TokenSold(_valueAsWei / _rate, msg.sender);
+    emit TokenSold(_sending, msg.sender);
   }
 
   function setWithdrawalWallet(address withdrawalWallet_)
